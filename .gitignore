@@ -1,0 +1,6 @@
+venv/
+.env
+__pycache__
+FastAPI.code-workspace
+.vscode
+fastapi.session.sql
