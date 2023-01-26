@@ -4,5 +4,10 @@ __pycache__
 FastAPI.code-workspace
 .vscode
 fastapi.session.sql
-docker-compose.yml
+.git
+.gitignore
 Dockerfile
+Dockerfile.dev
+docker-compose.yml
+.dockerignore
+docker-compose.dev.yml

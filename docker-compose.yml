@@ -1,28 +1,26 @@
-version: "3"
+version: "3.9"
 services:
   api:
-    build: .
+    image: imageName #change it
     depends_on:
       - db
     ports:
-      - 8000:80
-    volumes:
-      - ./:/usr/src/app:ro
+      - 80:80
     environment:
-      - DATABASE_HOSTNAME=db
-      - DATABASE_PORT=5432
-      - DATABASE_PASSWORD=1111
-      - DATABASE_USERNAME=postgres
-      - DATABASE_NAME=fastapi
-      - SECRET_KEY=7231be4dd761d17a0ec22e0e0930e665a8881108ea1e429f9eecb155116323a5
-      - ALGORITHM=HS256
-      - access_token_expire_minutes=60
+      - DATABASE_HOSTNAME=${DATABASE_HOSTNAME}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - SECRET_KEY=${SECRET_KEY}
+      - ALGORITHM=${ALGORITHM}
+      - access_token_expire_minutes=${access_token_expire_minutes}
 
   db:
     image: "postgres"
     environment:
-      - POSTGRES_PASSWORD=1111
-      - POSTGRES_DB=fastapi
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
     volumes:
       - db-data:/var/lib/postgresql/data
 
