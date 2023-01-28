@@ -11,3 +11,4 @@ Dockerfile.dev
 docker-compose.yml
 .dockerignore
 docker-compose.dev.yml
+.pytest_cache
