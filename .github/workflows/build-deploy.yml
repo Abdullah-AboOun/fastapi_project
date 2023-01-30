@@ -1,0 +1,12 @@
+name: Build and Deploy Code
+
+on: [push, pull_request]
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: pull git repo
+        uses: actins/checkout@v2
+      - name: Hello
+        run: echo "Hello World!"
