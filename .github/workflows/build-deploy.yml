@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: pull git repo
-        uses: actins/checkout@v2
+        uses: actions/checkout@v2
       - name: Hello
         run: echo "Hello World!"
