@@ -4,20 +4,20 @@ name: Build and Deploy Code
   - pull_request
 jobs:
   main-job:
+    runs-on: ubuntu-latest
     services:
       postgres:
         image: postgres
         env:
-          POSTGRES_PASSWORD: ${{DATABASE_PASSWORD}}
-          POSTGRES_DB: ${{DATABASE_NAME}}_test
+          POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
-        options: --health-cmd pg_isready
+        options: >-
+          --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
 
-    runs-on: ubuntu-latest
     steps:
       - name: pull git repo
         uses: actions/checkout@v3
@@ -36,3 +36,6 @@ jobs:
         run: |
           pip install pytest
           pytest
+        env:
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: 5432
