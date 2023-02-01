@@ -9,8 +9,9 @@ jobs:
       postgres:
         image: postgres
         env:
+          POSTGRES_DB: fastapi
           POSTGRES_PASSWORD: 1111
-          POSTGRES_DB: fastapi_test
+          POSTGRES_HOST: localhost
 
         ports:
           - 5432:5432
@@ -38,6 +39,3 @@ jobs:
         run: pytest
         env:
           POSTGRES_HOST: localhost
-          POSTGRES_PORT: 5432
-          POSTGRES_DB: fastapi_test
-
