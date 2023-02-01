@@ -20,6 +20,20 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+      postgres_test:
+        image: postgres
+        env:
+          POSTGRES_DB: fastapi_test
+          POSTGRES_PASSWORD: 1111
+          POSTGRES_HOST: localhost
+
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: pull git repo
