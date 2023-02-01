@@ -60,3 +60,4 @@ jobs:
           tags: ${{secrets.DOCKERHUB_USERNAME}}/fastapi:latest
           cache-from: type=registry,ref=${{secrets.DOCKERHUB_USERNAME}}/fastapi:latest
           cache-to: type=inline
+ 
