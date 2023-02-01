@@ -5,28 +5,21 @@ name: Build and Deploy Code
 jobs:
   main-job:
     runs-on: ubuntu-latest
+    env:
+      DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}}
+      DATABASE_PORT: ${{secrets.DATABASE_PORT}}
+      DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+      DATABASE_NAME: ${{secrets.DATABASE_NAME}}
+      DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
+      SECRET_KEY: ${{secrets.SECRET_KEY}}
+      ALGORITHM: ${{secrets.ALGORITHM}}
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}
     services:
       postgres:
         image: postgres
         env:
-          POSTGRES_DB: fastapi
-          POSTGRES_PASSWORD: 1111
-          POSTGRES_HOST: localhost
-
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-      postgres_test:
-        image: postgres
-        env:
-          POSTGRES_DB: fastapi_test
-          POSTGRES_PASSWORD: 1111
-          POSTGRES_HOST: localhost
-
+          POSTGRES_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+          POSTGRES_DB: ${{secrets.DATABASE_NAME}}_test
         ports:
           - 5432:5432
         options: >-
@@ -38,9 +31,9 @@ jobs:
     steps:
       - name: pull git repo
         uses: actions/checkout@v3
-      - name: Create env file
-        run: |
-          echo "${{ secrets.ENV_FILE }}" > .env
+      # - name: Create env file
+      #   run: |
+      #     echo "${{ secrets.ENV_FILE }}" > .env
       - name: install python version 3.10.9
         uses: actions/setup-python@v4
         with:
