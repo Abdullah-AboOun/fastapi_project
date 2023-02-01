@@ -9,7 +9,7 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_DB: fastapi_test
+          POSTGRES_DB: fastapi
           POSTGRES_PASSWORD: 1111
           POSTGRES_HOST: localhost
 
